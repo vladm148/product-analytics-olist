@@ -1,31 +1,112 @@
 # Dataset Description
 
 ## Table customers
+**Description:**
+Contains information about customers.
+Each customer has a unique customer_id and is associated with orders.
 
-*will be done later*
+**Fields:**
+| Field          | Description               |
+| -------------- | ------------------------  |
+| customer_id    | customer identification   |
+| customer_city  | city                      |
+| customer_state | state                     |
 
 ## Table geolocation
+**Description:**
+Contains information about the geographical location of Brazil's postal codes
 
-*will be done later*
+**Fields:**
+| Field | Description |
+|------|----------|
+| geolocation_zip_code_prefix | The first digits of the zip code |
+| geolocation_lat | Geographical latitude |
+| geolocation_lng | Geographical longitude |
+| geolocation_city | City |
+| geolocation_state | State |
 
 ## Table order_items
+**Description:**
+Contains information about the products included in each order
+One order can contain multiple items.
 
-*will be done later*
+**Fields:**
+| Field | Description |
+|------|----------|
+| order_id | Order identificator |
+| order_item_id | Serial number of the product inside the order |
+| product_id | Product identificator |
+| seller_id | Seller identificator |
+| shipping_limit_date | Deadline for sending |
+| price | Cost of the product |
+| freight_value | Shipping cost |
 
 ## Table order_payments
+**Description:**
+Contains information about the payment of orders.
+One order can have multiple payments.
 
-*will be done later*
+**Fields:**
+| Field | Description |
+|------|----------|
+| order_id | Order identificator |
+| payment_sequential | Payment number inside the order |
+| payment_type | Payment method |
+| payment_installments | Number of payments (installments) |
+| payment_value | Payment amount |
 
 ## Table orders
+**Description:**
+The main table of the project.
+Each record corresponds to one order.
 
-*will be done later*
+**Fields:**
+| Field | Description |
+|------|----------|
+| order_id | Order identificator |
+| customer_id | Customer identificator |
+| order_status | Status of order |
+| order_purchase_timestamp | Date and time of placing the order |
+| order_approved_at | Order confirmation date |
+| order_delivered_carrier_date | Date of transfer of the order to the carrier |
+| order_delivered_customer_date | Delivery date to the buyer |
+| order_estimated_delivery_date | Planned delivery date |
 
 ## Table products
+**Description:**
+Contains information about the products
 
-*will be done later*
+**Fields:**
+| Field | Description |
+|------|----------|
+| product_id | Product identificator |
+| product_category_name | Product category |
+| product_name_lenght | Length of the product name |
+| product_description_lenght | Length of the product description |
+| product_photos_qty | Number of photos |
+| product_weight_g | Product weight (g) |
+| product_length_cm | Product Length (cm) |
+| product_height_cm | Product height (cm) |
+| product_width_cm | Product width (cm) |
 
 ## Table sellers
+**Description:**
+Contains information about the sellers of the marketplace
 
-*will be done later*
+**Fields:**
+| Field | Description |
+|------|----------|
+| seller_id | Seller identificator |
+| seller_zip_code_prefix | The first digits of the zip code |
+| seller_city | Seller's city |
+| seller_state | Seller's state |
 
-## Table product_categories
+## Table product_category_name_translation
+**Description:**
+Contains a translation of product categories from Portuguese into English
+
+**Fields:**
+| Field | Description |
+|------|----------|
+| product_category_name | Category name in Portuguese |
+| product_category_name_english | Category name in English |
