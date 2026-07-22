@@ -1,6 +1,33 @@
 -- Olist Orders Dataset 
 -- Data Quality Check
 
+-- Fixing Tables
+
+ALTER TABLE olist_orders_dataset
+ALTER COLUMN order_purchase_timestamp 
+TYPE TIMESTAMP
+USING NULLIF(order_purchase_timestamp, '')::timestamp;
+
+ALTER TABLE olist_orders_dataset
+ALTER COLUMN order_approved_at 
+TYPE TIMESTAMP
+USING NULLIF(order_approved_at, '')::timestamp;
+
+ALTER TABLE olist_orders_dataset
+ALTER COLUMN order_delivered_carrier_date 
+TYPE TIMESTAMP
+USING NULLIF(order_delivered_carrier_date, '')::timestamp;
+
+ALTER TABLE olist_orders_dataset
+ALTER COLUMN order_delivered_customer_date 
+TYPE TIMESTAMP
+USING NULLIF(order_delivered_customer_date, '')::timestamp;
+
+ALTER TABLE olist_orders_dataset
+ALTER COLUMN order_estimated_delivery_date 
+TYPE TIMESTAMP
+USING NULLIF(order_estimated_delivery_date, '')::timestamp;
+
 -- 1) Number of rows
 
 select COUNT(*)

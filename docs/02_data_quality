@@ -1,1 +1,300 @@
-*Here will be information about the quality of data*
+# Data Quality Control
+
+## Table customers
+
+- Number of rows: **99 441**
+- NULL values (No NULL values)
+- Only customer_unique_id has duplicates
+(One can order a lot of products)
+- Distribution of unique states (27 states)
+- Number of customers in each state (The first ten):
+
+| Customer State | Clients Count |
+|----------------|---------------|
+| SP             | 41746         |
+| RJ             | 12852         |
+| MG             | 11635         |
+| RS             | 5466          |
+| PR             | 5045          |
+| SC             | 3637          |
+| BA             | 3380          |
+| DF             | 2140          |
+| ES             | 2033          |
+| GO             | 2020          |
+
+
+## Table geolocation
+
+- Number of rows: **1 000 163**
+- NULL values (No NULL values)
+- Number of geolocations in each state (The first ten):
+
+| Customer State | Clients Count |
+|----------------|---------------|
+| SP             | 404268        |
+| MG             | 126336        |
+| RJ             | 121169        |
+| RS             | 61851         |
+| PR             | 57859         |
+| SC             | 38328         |
+| BA             | 36045         |
+| GO             | 20139         |
+| ES             | 16748         |
+| PE             | 16432         |
+
+- Number of geolocations in each city (the first ten):
+
+| City               | Clients Count |
+|--------------------|---------------|
+| sao paulo          | 135800        |
+| rio de janeiro     | 62151         |
+| belo horizonte     | 27805         |
+| são paulo          | 24918         |
+| curitiba           | 16593         |
+| porto alegre       | 13521         |
+| salvador           | 11865         |
+| guarulhos          | 11340         |
+| brasilia           | 10470         |
+| sao bernardo do campo | 8112      |
+
+## Table order_items
+
+- Number of rows: **112 650**
+- NULL values (No NULL values)
+- Duplicates: order_id, order_item_id, product_id, seller_id. 
+**Reason:** 
+One order may contain a lot of products (*order_id*)
+One product can be bought by different customers (*product_id*)
+One seller may have a lot of products
+(*seller_id*)
+- The pair of order_item_id and order_id is **unique**
+(Combination of order identificator and number of product which was ordered)
+
+- Max/min price:
+
+| Maximum  | Minimum |
+|---------|-------|
+| 6735.0 | 0.85 |
+
+- Max/min freight_value:
+
+| Maximum  | Minimum |
+|---------|-------|
+| 409.68 | 0 |
+
+- Max/min shipping_limit_date:
+
+| Maximum  | Minimum |
+|---------|-------|
+| 2020-04-09 22:35:08 | 2016-09-19 00:15:34 |
+
+## Table order_payments
+
+- Number of rows: **103 886**
+- NULL values (No NULL values)
+- Order_id has duplicates (explained earlier)
+
+- Max/min payment_installments:
+
+| Maximum  | Minimum |
+|---------|-------|
+| 24 | 0 |
+
+- Max/min payment_value:
+
+| Maximum  | Minimum |
+|---------|-------|
+| 13664.08 | 0 |
+
+(Minimum should be checked later, 9 values)
+
+- Distribution of payment_types:
+
+| payment_type | count_type |
+|--------------|------------|
+| credit_card  | 76795      |
+| boleto       | 19784      |
+| voucher      | 5775       |
+| debit_card   | 1529       |
+| not_defined  | 3          |
+
+- Distribution of payment_sequential (first ten, maximum - 29):
+
+| payment_sequential | count_sequential |
+|--------------------|------------------|
+| 1                  | 99360            |
+| 2                  | 3039             |
+| 3                  | 581              |
+| 4                  | 278              |
+| 5                  | 170              |
+| 6                  | 118              |
+| 7                  | 82               |
+| 8                  | 54               |
+| 9                  | 43               |
+| 10                 | 34               |
+
+## Table orders
+
+- Number of rows: **99 441**
+- NULL values:
+order_approved_at - *160*
+order_delivered_carrier_date - *1 783* 
+order_delivered_customer_date - *2 965*
+**Reason:** Not all orders were delivered
+- Order_id has duplicates (explained earlier)
+- *No duplicates in order_id, customer_id*
+- Max/min order_purchase_timestamp:
+
+| Maximum  | Minimum |
+|---------|-------|
+| 2018-10-17 17:30:18 | 2016-09-04 21:15:19 |
+
+- Max/min order_approved_at:
+
+| Maximum  | Minimum |
+|---------|-------|
+| 2018-09-03 17:40:06.000 | 2016-09-15 12:16:38.000 |
+
+- Max/min order_delivered_carrier_date:
+
+| Maximum  | Minimum |
+|---------|-------|
+| 2018-09-11 19:48:28.000 | 2016-10-08 10:34:01.000 |
+
+- Max/min order_delivered_customer_date:
+
+| Maximum  | Minimum |
+|---------|-------|
+| 2018-10-17 13:22:46.000 | 2016-10-11 13:46:32.000 |
+
+- Max/min order_estimated_delivery_date:
+
+| Maximum  | Minimum |
+|---------|-------|
+| 2018-11-12 00:00:00.000 | 2016-09-30 00:00:00.000 |
+
+- Distribution of order_status:
+
+| order_status | count_order_status |
+|--------------|--------------------|
+| delivered    | 96478              |
+| shipped      | 1107               |
+| canceled     | 625                |
+| unavailable  | 609                |
+| invoiced     | 314                |
+| processing   | 301                |
+| created      | 5                  |
+| approved     | 2                  |
+
+- Distribution of payment_sequential:
+(was earlier)
+
+## Table products
+
+- Number of rows: **32 951**
+- NULL values:
+product_name_lenght - 610
+product_description_lenght - 610
+product_photos_qty - 610
+**Reason:** Not all sellers provide full information about their product
+product_weight_g - 2
+product_length_cm - 2
+product_height_cm - 2
+product_width_cm - 2
+**Reason:** Some errors
+
+- Max/min product_weight_g:
+
+| Maximum  | Minimum |
+|---------|-------|
+| 40425 | 0 |
+
+- Max/min product_length_cm:
+
+| Maximum  | Minimum |
+|---------|-------|
+| 105 | 7 |
+
+- Max/min product_height_cm:
+
+| Maximum  | Minimum |
+|---------|-------|
+| 105 | 2 |
+
+- Max/min product_width_cm:
+
+| Maximum  | Minimum |
+|---------|-------|
+| 118 | 6 |
+
+- Distribution of product_category_name (the first ten):
+
+| product_category_name | count_category |
+|-----------------------|----------------|
+| cama_mesa_banho       | 3029           |
+| esporte_lazer         | 2867           |
+| moveis_decoracao      | 2657           |
+| beleza_saude          | 2444           |
+| utilidades_domesticas | 2335           |
+| automotivo            | 1900           |
+| informatica_acessorios| 1639           |
+| brinquedos            | 1411           |
+| relogios_presentes    | 1329           |
+| telefonia             | 1134           |
+
+- Distribution of product_photos_qty (the first ten):
+
+| product_photos_qty | count_photos_quantity |
+|--------------------|-----------------------|
+| 1                  | 16489                 |
+| 2                  | 6263                  |
+| 3                  | 3860                  |
+| 4                  | 2428                  |
+| 5                  | 1484                  |
+| 6                  | 968                   |
+|                    | 610                   |
+| 7                  | 343                   |
+| 8                  | 192                   |
+| 9                  | 105                   |
+
+Pay attention to Null 
+
+## Table sellers
+
+- Number of rows: **3 095**
+- NULL values (No NULL values)
+- seller_id does not have duplicates
+- Distribution of seller_city (The first ten):
+
+| seller_city           | count_city |
+|-----------------------|------------|
+| sao paulo             | 694        |
+| curitiba              | 127        |
+| rio de janeiro        | 96         |
+| belo horizonte        | 68         |
+| ribeirao preto        | 52         |
+| guarulhos             | 50         |
+| ibitinga              | 49         |
+| santo andre           | 45         |
+| campinas              | 41         |
+| maringa               | 40         |
+
+- Distribution of seller_state (The first ten):
+
+| seller_state | count_seller_state |
+|--------------|--------------------|
+| SP           | 1849               |
+| PR           | 349                |
+| MG           | 244                |
+| SC           | 190                |
+| RJ           | 171                |
+| RS           | 129                |
+| GO           | 40                 |
+| DF           | 30                 |
+| ES           | 23                 |
+| BA           | 19                 |
+
+## Table product_category_name_translation
+
+- Number of rows: **71**
+- NULL values (No NULL values)
