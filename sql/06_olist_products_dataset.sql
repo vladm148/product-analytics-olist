@@ -67,3 +67,9 @@ from olist_products_dataset
 group by product_photos_qty
 order by count_photos_quantity desc;
 
+
+-- It is better to change to NULL not to have problems
+update olist_products_dataset
+set product_category_name = null
+where TRIM(product_category_name) = '';
+
