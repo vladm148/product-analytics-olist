@@ -9,14 +9,14 @@ from olist_order_payments_dataset;
 -- 16 009 004
 
 -- 3) Average Order Value
-select AVG(payment_value) as AOV
+select ROUND(AVG(payment_value)::numeric, 2) as AOV
 from olist_order_payments_dataset;
--- 154,1004
+-- 154,1
 
 -- 4) Average Items per Order
-select COUNT(*)::numeric / COUNT(distinct order_id) as AIPO
+select ROUND(COUNT(*)::numeric / COUNT(distinct order_id), 2) as AIPO
 from olist_order_items_dataset;
--- 1,1417 customers often buy only one product
+-- Customers buy usually about 1 product (1,14 in average)
 
 -- 5) Average Revenue per Customer
 select ROUND((SUM(payment_value) / 
