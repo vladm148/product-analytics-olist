@@ -108,9 +108,3 @@ from
 	join olist_customers_dataset using (customer_id)
 group by customer_state
 order by state_revenue desc;
-
-
-
-
-
-
